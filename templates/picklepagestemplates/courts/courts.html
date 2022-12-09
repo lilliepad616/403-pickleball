@@ -1,16 +1,19 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<h1>Hello Courts</h1>
-<div class="collapse navbar-collapse" id="navbarResponsive">
+<h1><b>CUSTOMER LIST</b></h1>
+<a class="btn btn-primary" href="{% url 'addCustomer' %}">New Customer</a>
+<br><br>
+<div class = "container">
+    {% for customer in cust %}
+    <p>
+        <a class="btn btn-primary" href="{% url 'showSingleCustomer' cust_id=customer.id %}">Edit</a>
+        <a class="btn btn-primary" href="{% url 'addCustomerDestination' cust_id=customer.id %}">Add Destination</a>
+        {{customer.last_name}}, {{customer.first_name}}
+        <a class="btn btn-primary" href="{% url 'deleteCustomer' cust_id=customer.id %}">Delete</a>
+    </p>
+    {% endfor %}
 
-    <ul class="navbar-nav text-uppercase ml-auto">
-
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'create' %}">Create</a></li>
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'update' %}">Update</a></li>
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'delete' %}">Delete</a></li>
-
-    </ul>
-
+    {% comment %} <a class="btn btn-primary" href="{% url 'addCustomer' %}">New Customer</a> {% endcomment %}
 </div>
-<!--put our read form here-->
-{% endblock%}
+{% endblock %}

@@ -25,3 +25,36 @@ def courtsUpdatePageView(request) :
 def courtsDeletePageView(request) :
      return render(request, 'picklepagestemplates/courts/deletecourt.html')
 
+# def showCustomersPageView(request) :
+#     data = Customer.objects.all()
+
+#     context = {
+#         "cust" : data
+#     }
+#     return render(request, 'homepages/showCustomers.html', context)
+
+# def showSingleCustomerPageView(request, cust_id):
+#     data = Customer.objects.get(id = cust_id)
+
+#     context = {
+#         "record" : data,
+#     }
+#     return render(request, 'homepages/editCustomer.html', context)
+
+# def updateCustomerPageView(request):
+#     if request.method == 'POST':
+#         cust_id = request.POST['cust_id']
+
+#         customer = Customer.objects.get(id=cust_id)
+
+#         customer.first_name = request.POST['first_name']
+#         customer.last_name = request.POST['last_name']
+#         customer.user_name = request.POST['user_name']
+#         customer.password = request.POST['password']
+#         customer.email = request.POST['email']
+#         customer.phone = request.POST['phone']
+
+#         customer.save()
+    
+#     return showCustomersPageView(request)
+

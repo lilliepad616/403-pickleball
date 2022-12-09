@@ -1,5 +1,38 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<h1>Hello Courts (create)</h1>
-<!--put our create form here-->
-{% endblock%}
+<div class="container">
+    <div class = "text-left">
+        <h2 class="section-heading text-uppercase">Add Customer</h2>
+    </div>
+    <br>
+    <form name="form" method="post" action="{% url 'addCustomer' %}">
+        {% csrf_token %}
+        <label for="Name">First Name:</label>
+        <input type="text" name='first_name' id='first_name' autofocus>
+        <br><br>
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" name='last_name' id='last_name'>
+        <br><br>
+
+        <label for="user_name">User Name:</label>
+        <input type="text" name='user_name' id='user_name'>
+        <br><br>
+
+        <label for="password">Password:</label>
+        <input type="text" name='password' id='password'>
+        <br><br>
+
+        <label for="email">Email:</label>
+        <input type="text" name='email' id='email'>
+        <br><br>
+
+        <label for="phone">Phone:</label>
+        <input type="text" name='phone' id='phone'>
+        <br><br>
+
+        <button type="submit">Add</button>
+    </form>
+{% endblock %}
+</div>
