@@ -14,5 +14,10 @@ urlpatterns = [
     path("courts/", courtsPageView, name="courts"),
     path("courts/create/", courtsCreatePageView, name="create"),   
     path("courts/update/", courtsUpdatePageView, name="update"),   
-    path("courts/delete/", courtsDeletePageView, name="delete"),   
+    path("courts/delete/", courtsDeletePageView, name="delete"),
+    # path("customers/", showCustomersPageView, name="customers"),
+    # path("showCustomers/<int:cust_id>/", showSingleCustomerPageView, name="showSingleCustomer"),
+    # path("updateCustomers/", updateCustomerPageView, name="updateCust"),
+    # path("deleteCustomers/<int:cust_id>/", deleteCustomerPageView, name="deleteCustomer"),
+    # path("addCustomers/", addCustomerPageView, name="addCustomer"),
 ] 
