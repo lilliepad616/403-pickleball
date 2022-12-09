@@ -4,16 +4,23 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def indexPageView(request) :
-    return HttpResponse('Hello Universe!')
+     return render(request, 'picklepagestemplates/index.html')
 
 def aboutPageView(request) :
-    sOutput = '<html><head><title>My Title</title></head><body><p>Welcome to the about page</p></body></html>'
-    return HttpResponse(sOutput)
+    return render(request, 'picklepagestemplates/about.html')
 
 def equipPageView(request) :
-    sOutput = '<html><head><title>My Title</title></head><body><p>Welcome to the equipment page</p></body></html>'
-    return HttpResponse(sOutput)
+    return render(request, 'picklepagestemplates/equipment.html')
+    
 
 def courtsPageView(request) :
-    sOutput = '<html><head><title>My Title</title></head><body><p>Welcome to the courts page</p></body></html>'
-    return HttpResponse(sOutput) 
+     return render(request, 'picklepagestemplates/courts/courts.html')
+
+def courtsCreatePageView(request) :
+     return render(request, 'picklepagestemplates/courts/createcourt.html')
+
+def courtsUpdatePageView(request) :
+     return render(request, 'picklepagestemplates/courts/updatecourt.html')
+
+def courtsDeletePageView(request) :
+     return render(request, 'picklepagestemplates/courts/deletecourt.html')
