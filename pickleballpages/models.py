@@ -4,7 +4,7 @@ from django.db import models
 
 class Court(models.Model):
     courtname = models.CharField(max_length=30) #This attribute represents a column in the Menu table
-    image = models.ImageField (upload_to = 'photos', null = True)
+    image = models.ImageField (upload_to = 'photo', null = True)
     courtaddress = models.CharField(max_length=300)
     numberofcourts = models.IntegerField (default = 0)
     courtofficiators = models.BooleanField(default = False)
