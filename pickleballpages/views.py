@@ -24,3 +24,4 @@ def courtsUpdatePageView(request) :
 
 def courtsDeletePageView(request) :
      return render(request, 'picklepagestemplates/courts/deletecourt.html')
+
