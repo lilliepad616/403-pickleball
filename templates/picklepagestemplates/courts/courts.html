@@ -1,19 +1,47 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<h1><b>CUSTOMER LIST</b></h1>
-<a class="btn btn-primary" href="{% url 'addCustomer' %}">New Customer</a>
-<br><br>
-<div class = "container">
-    {% for customer in cust %}
-    <p>
-        <a class="btn btn-primary" href="{% url 'showSingleCustomer' cust_id=customer.id %}">Edit</a>
-        <a class="btn btn-primary" href="{% url 'addCustomerDestination' cust_id=customer.id %}">Add Destination</a>
-        {{customer.last_name}}, {{customer.first_name}}
-        <a class="btn btn-primary" href="{% url 'deleteCustomer' cust_id=customer.id %}">Delete</a>
-    </p>
-    {% endfor %}
-
-    {% comment %} <a class="btn btn-primary" href="{% url 'addCustomer' %}">New Customer</a> {% endcomment %}
+<center><h1 class = 'totaltitle'>COURTS</h1></center>
+<center><div class = 'container paddedtime'><a class="btn btn-primary" href="{% url 'addCourt' %}">Add New Court</a></div></center>
+<br>
+<div id="gradient"></div>
+<center><form class="searchbox paddedtime" method = 'GET' action="{% url 'courts' %}">
+  <input type="search" placeholder="Search" name="court" />
+  <button type="submit" value="search" class="btn btn-primary">Search</button>
+  <a class="btn btn-primary" href="{% url 'courts' %}">Reset Search</a>
+</form><center>
+<div class="byline">
 </div>
+<br>
+<div class = "container">
+        <center><table class='styled-table padbottom styled-table' style='min-width:1000px'>
+            <thead>
+                <th>Court Name</th>
+                <th>Court Address</th>
+                <th>Number of Courts</th>
+                <th>Court Officiators</th>
+                <th>Lights</th>
+                <th>Closing Time</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </thead>
+            <tbody>
+            {% for c in queryset %} 
+            <tr>
+                <td>{{c.courtname}}</td> 
+                <td>{{c.courtaddress}}</td> 
+                <td>{{c.numberofcourts}}</td> 
+                <td>{{c.courtofficiators}}</td> 
+                <td>{{c.lights}}</td> 
+                <td>{{c.closingtime}}</td> 
+                <td><a class="btn-here" href="{% url 'showSingleCourt' court_id=c.id %}">Edit</a></td>
+                <td><a class="btn-here" href="{% url 'deleteCourt' court_id=c.id %}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+            </table></center>
+            
+</div>
+
+
 {% endblock %}

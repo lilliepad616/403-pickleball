@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from pickleballpages.models import Court
 
 # Create your views here.
 from django.http import HttpResponse
@@ -13,71 +14,77 @@ def equipPageView(request) :
     return render(request, 'picklepagestemplates/equipment.html')
     
 
-def courtsPageView(request) :
-     return render(request, 'picklepagestemplates/courts/courts.html')
+def showCourtsPageView(request) :
+    data = Court.objects.all()
+    qs = Court.objects.all()
+    court_query = request.GET.get('court')
 
-def courtsCreatePageView(request) :
-     return render(request, 'picklepagestemplates/courts/createcourt.html')
+    if court_query != '' and court_query is not None:
+        qs = qs.filter(courtname__icontains = court_query)
+    context = {
+        "court" : data,
+        'queryset' : qs
+    }
+    return render(request, 'picklepagestemplates/courts/courts.html', context)
 
-def courtsUpdatePageView(request) :
-     return render(request, 'picklepagestemplates/courts/updatecourt.html')
+def showSingleCourtPageView(request, court_id):
+    data = Court.objects.get(id = court_id)
 
-def courtsDeletePageView(request) :
-     return render(request, 'picklepagestemplates/courts/deletecourt.html')
+    context = {
+        "record" : data,
+    }
+    return render(request, 'picklepagestemplates/courts/updatecourt.html', context)
 
-# def showCustomersPageView(request) :
-#     data = Customer.objects.all()
+def updateCourtPageView(request):
+    if request.method == 'POST':
+        court_id = request.POST['court_id']
 
-#     context = {
-#         "cust" : data
-#     }
-#     return render(request, 'homepages/showCustomers.html', context)
+        court = Court.objects.get(id=court_id)
 
-# def showSingleCustomerPageView(request, cust_id):
-#     data = Customer.objects.get(id = cust_id)
+        court.courtname = request.POST['courtname']
+        court.courtaddress = request.POST['courtaddress']
+        court.numberofcourts = request.POST['numberofcourts']
+        court.courtofficiators = request.POST['courtofficiators']
+        court.lights = request.POST['lights']
+        court.closingtime = request.POST['closingtime']
 
-#     context = {
-#         "record" : data,
-#     }
-#     return render(request, 'homepages/editCustomer.html', context)
-
-# def updateCustomerPageView(request):
-#     if request.method == 'POST':
-#         cust_id = request.POST['cust_id']
-
-#         customer = Customer.objects.get(id=cust_id)
-
-#         customer.first_name = request.POST['first_name']
-#         customer.last_name = request.POST['last_name']
-#         customer.user_name = request.POST['user_name']
-#         customer.password = request.POST['password']
-#         customer.email = request.POST['email']
-#         customer.phone = request.POST['phone']
-
-#         customer.save()
+        court.save()
     
-#     return showCustomersPageView(request)
+    return showCourtsPageView(request)
 
-# def deleteCustomerPageView(request, cust_id):
-#     data = Customer.objects.get(id=cust_id)
+def deleteCourtPageView(request, court_id):
+    data = Court.objects.get(id=court_id)
 
-#     data.delete()
+    data.delete()
 
-#     return showCustomersPageView(request)
+    return showCourtsPageView(request)
 
-# def addCustomerPageView(request):
-#     if request.method == 'POST':
-#         customer = Customer()
+def addCourtPageView(request):
+    if request.method == 'POST':
+        court = Court()
 
-#         customer.first_name = request.POST['first_name']
-#         customer.last_name = request.POST['last_name']
-#         customer.user_name = request.POST['user_name']
-#         customer.password = request.POST['password']
-#         customer.email = request.POST['email']
-#         customer.phone = request.POST['phone']
+        court.courtname = request.POST['courtname']
+        court.courtaddress = request.POST['courtaddress']
+        court.numberofcourts = request.POST['numberofcourts']
+        court.courtofficiators = request.POST['courtofficiators']
+        court.lights = request.POST['lights']
+        court.closingtime = request.POST['closingtime']
 
-#         customer.save()
+        court.save()
 
-#         return showCustomersPageView(request)
-#     else:
-#         return render(request, 'homepages/addCustomer.html')
+        return showCourtsPageView(request)
+    else:
+        return render(request, 'picklepagestemplates/courts/createcourt.html')
+
+
+# def courtSearchView(request):
+#     qs = Court.objects.all()
+#     court_query = request.GET.get('court')
+
+#     if court_query != '' and court_query is not None:
+#         qs = qs.filter(Name__icontains = court_query)
+
+#     context = {
+#         'queryset' : qs
+#     }
+#     return render(request, 'picklepagestemplates/courts/courts.html', context)

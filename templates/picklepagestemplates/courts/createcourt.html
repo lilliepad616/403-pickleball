@@ -3,34 +3,50 @@
 {% block content %}
 <div class="container">
     <div class = "text-left">
-        <h2 class="section-heading text-uppercase">Add Customer</h2>
+        <h2 class="section-heading text-uppercase">Add Court</h2>
     </div>
     <br>
-    <form name="form" method="post" action="{% url 'addCustomer' %}">
+    <form name="form" method="post" action="{% url 'addCourt' %}">
         {% csrf_token %}
-        <label for="Name">First Name:</label>
-        <input type="text" name='first_name' id='first_name' autofocus>
+        <label for="courtname">Court name:</label>
+        <input type="text" name='courtname' id='courtname' autofocus>
         <br><br>
 
-        <label for="last_name">Last Name:</label>
-        <input type="text" name='last_name' id='last_name'>
+        <label for="courtaddress">Court Address:</label>
+        <input type="text" name='courtaddress' id='courtaddress'>
         <br><br>
 
-        <label for="user_name">User Name:</label>
-        <input type="text" name='user_name' id='user_name'>
+        <label for="numberofcourts">Number of Courts:</label>
+        <input type="text" name='numberofcourts' id='numberofcourts'>
         <br><br>
 
-        <label for="password">Password:</label>
-        <input type="text" name='password' id='password'>
+        <label for="courtofficiators">Court Officiators:</label>
+        <select id="courtofficiators" name="courtofficiators">
+            <option value= "No" ></option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
         <br><br>
 
-        <label for="email">Email:</label>
-        <input type="text" name='email' id='email'>
+        <label for="lights">Lights:</label>
+        <select id="lights" name="lights">
+            <option value= "Yes" ></option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
         <br><br>
 
-        <label for="phone">Phone:</label>
-        <input type="text" name='phone' id='phone'>
-        <br><br>
+        <label for="closingtime">Closing Time:</label>
+        <select id="closingtime" name="closingtime">
+            <option value="NA">NA</option>
+            <option value="9:00 PM">9:00 PM</option>
+            <option value="9:30 PM">9:30 PM</option>
+            <option value="10:00 PM">10 PM</option>
+            <option value="10:30 PM">10:30 PM</option>
+            <option value="11:00 PM">11 PM</option>
+            <option value="11:30 PM">11:30 PM</option>
+            <option value="12 AM">12 AM</option>
+        </select>
 
         <button type="submit">Add</button>
     </form>
