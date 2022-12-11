@@ -1,1 +1,1 @@
-web: python manage.py migrate && gunicorn 403-pickleball.wsgi
+web: python manage.py migrate && gunicorn pickleballsite.wsgi
